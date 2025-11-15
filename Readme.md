@@ -17,9 +17,10 @@ A production-ready e-commerce RESTful API built with **Go (Golang)**. This proje
 * **Graceful Shutdown:** Implements a standard `http.Server` with configured timeouts (`WriteTimeout`, `ReadTimeout`, `IdleTimeout`) for graceful shutdown.
 * **Clean Architecture:** Organizes code by feature (`products`, `orders`) and separates concerns (`handler`, `service`, `repository`).
 * **Containerized:** Includes a `docker-compose.yml` for easy setup of the development environment (PostgreSQL).
+![WhatsApp Image](<img src="https://github.com/user-attachments/assets/7ffd806c-epfc-42ea-8172-0b2ab2f6234e"
+     width="450">)
 
-<img src="https://github.com/user-attachments/assets/7ffd806c-epfc-42ea-8172-0b2ab2f6234e"
-     width="450">
+
 
 ## 🛠️ Tech Stack
 
