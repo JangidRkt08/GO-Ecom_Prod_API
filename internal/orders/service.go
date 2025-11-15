@@ -35,6 +35,7 @@ func (s *svc) PlaceOrder(ctx context.Context, tempOrder createOrderParams) (repo
 		return repo.Order{}, fmt.Errorf("at least one item is required")
 	}
 
+	// Transaction(SQL)
 	tx, err := s.db.Begin(ctx)
 	if err != nil {
 		return repo.Order{}, err
@@ -51,7 +52,7 @@ func (s *svc) PlaceOrder(ctx context.Context, tempOrder createOrderParams) (repo
 
 	// look for the product if exists
 	for _, item := range tempOrder.Items {
-		product, err := qtx.FindProductByID(ctx, item.ProductID)
+		product, err := qtx.FindProductByid(ctx, item.ProductID)
 		if err != nil {
 			return repo.Order{}, ErrProductNotFound
 		}
@@ -65,13 +66,13 @@ func (s *svc) PlaceOrder(ctx context.Context, tempOrder createOrderParams) (repo
 			OrderID:    order.ID,
 			ProductID:  item.ProductID,
 			Quantity:   item.Quantity,
-			PriceCents: product.PriceInCenters,
+			PriceCents: product.PriceInCents,
 		})
 		if err != nil {
 			return repo.Order{}, err
 		}
 
-		// Challenge: Update the product stock quantity
+		// Future Task: Update the product stock quantity
 	}
 
 	tx.Commit(ctx)

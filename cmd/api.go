@@ -9,6 +9,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/jackc/pgx/v5"
 	repo "github.com/jangidRkt08/go-Ecom_Prod-API/internal/adapters/postgresql/sqlc"
+	"github.com/jangidRkt08/go-Ecom_Prod-API/internal/orders"
 	"github.com/jangidRkt08/go-Ecom_Prod-API/internal/products"
 )
 type application struct{
@@ -37,13 +38,17 @@ func (app *application) mount() http.Handler{
   r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("All Good for now..."))
   })
+
+//   ---- PRODUCTS ----
   productService := products.NewService(repo.New(app.db))
   productHandler:= products.NewHandler(productService)
   r.Get("/products", productHandler.ListProducts)
 
-  ordersHandlers:= orders.NewHandler(nil)
 
-  r.Post("/orders",ordersHandlers.PlaceOrders)
+//   ---- ORDERS ----
+  orderService := orders.NewService(repo.New(app.db),app.db)
+  ordersHandlers:= orders.NewHandler(orderService)
+  r.Post("/orders",ordersHandlers.PlaceOrder)
 
 	return r
 	
