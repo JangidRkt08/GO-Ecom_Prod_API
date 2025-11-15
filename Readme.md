@@ -19,8 +19,7 @@ A production-ready e-commerce RESTful API built with **Go (Golang)**. This proje
 * **Containerized:** Includes a `docker-compose.yml` for easy setup of the development environment (PostgreSQL).
 
 <img src="https://github.com/user-attachments/assets/c38dbab8-db1b-485a-8b81-5fea2e01f42e"
-     width="450">
-![WhatsApp Image 2025-11-15 at 9 41 13 PM](https://github.com/user-attachments/assets/c38dbab8-db1b-485a-8b81-5fea2e01f42e)
+     width="1920">
 
 
 ## 🛠️ Tech Stack
