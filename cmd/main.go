@@ -14,7 +14,7 @@ func main(){
 	godotenv.Load() 
 	ctx := context.Background()
 	cfg := config{
-		addr: ":8080",
+		addr : ":" + os.Getenv("PORT"),
 		db: dbConfig{
 			dsn: env.GetString("GOOSE_DBSTRING"),
 	},
