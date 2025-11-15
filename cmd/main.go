@@ -79,12 +79,18 @@ func main() {
 
     // Run Goose migrations
 
-    if err := goose.Up(sqlDB, "./internal/adapters/postgresql/migrations"); err != nil {
-        slog.Error("goose migration failed", "error", err)
-        os.Exit(1)
-    }
+ migrationsDir := env.GetString("MIGRATIONS_DIR")
+if migrationsDir == "" {
+    migrationsDir = "./internal/adapters/postgresql/migrations"
+}
 
-    // 3️⃣ Connect using pgx for the application
+if err := goose.Up(sqlDB, migrationsDir); err != nil {
+    slog.Error("goose migration failed", "error", err)
+    os.Exit(1)
+}
+
+
+    // Connect using pgx for the application
     conn, err := pgx.Connect(ctx, cfg.db.dsn)
     if err != nil {
         slog.Error("Unable to connect to database", "error", err)
