@@ -1,0 +1,14 @@
+-- +goose Up
+-- +goose StatementBegin
+CREATE TABLE if not exists products(
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    price_in_cents INTEGER NOT NULL CHECK(price_in_cents >= 0),
+    quantity INTEGER NOT NULL DEFAULT 0 CHECK(quantity >= 0),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW());
+-- +goose StatementEnd
+
+-- +goose Down
+-- +goose StatementBegin
+DROP TABLE if exists products;
+-- +goose StatementEnd
