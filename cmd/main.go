@@ -7,15 +7,16 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jangidRkt08/go-Ecom_Prod-API/internal/env"
+	"github.com/joho/godotenv"
 )
 
 func main(){
+	godotenv.Load() 
 	ctx := context.Background()
 	cfg := config{
 		addr: ":8080",
 		db: dbConfig{
-			dsn: env.GetString("GOOSE_DBSTRING","host = localhost user=postgres password=postgres dbname=ecom port=5432 sslmode=disable",
-			),
+			dsn: env.GetString("GOOSE_DBSTRING"),
 	},
 }
 
