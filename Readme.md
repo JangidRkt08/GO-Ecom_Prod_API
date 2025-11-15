@@ -100,6 +100,9 @@ The server will start, and you should see a log message: INFO "Connected to data
 
 ## 📦 API Endpoints
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/75053a1c-9f11-4c06-8980-a21cc31bd05a" />
+
+
 Here are the primary endpoints implemented so far:
 
 ### Health Check
